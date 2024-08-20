@@ -80,10 +80,14 @@ if (isset($_GET['deleteAll'])) {
           foreach ($tasks as $row) {
             $id = $row['id'];
             $task_name = $row['task_name'];
+            $task_status = $row['task_status'];
             ?>
             <li class="list-group-item">
               <?= $task_name ?>
               <div class="float-end">
+                <a class="btn btn-outline-warning disabled">
+                  <?= $task_status ?>
+                </a>
                 <a href="index.php?edit=<?= $id ?>" class="btn btn-outline-success"><svg
                     xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                     class="bi bi-check-circle-fill" viewBox="0 0 16 16">
@@ -115,9 +119,11 @@ if (isset($_GET['deleteAll'])) {
               $tasks = mysqli_fetch_all($query, MYSQLI_ASSOC);
               foreach ($tasks as $row) {
                 $id = $row['id'];
+                $task_status = $row['task_status'];
                 $task_name = $row['task_name'];
                 ?>
-                <li class="list-group-item"><?= $task_name ?> <span class="btn btn-success disabled float-end">Done
+                <li class="list-group-item"><?= $task_name ?> <span
+                    class="btn btn-success disabled float-end"><?= $task_status ?>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                       class="bi bi-check2-circle" viewBox="0 0 16 16">
                       <path
